@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css">
+    <link rel="stylesheet"
+          href="https://api.visicom.ua/apps/visicom-autocomplete.min.css">
+    <meta name="keywords" content="site,audi,website" />
+
+    <title>Audi-Site</title>
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="shortcut icon" href="C:\Users\Mykola\Desktop\Проект\img\icons 1.png" type="image/x-icon" />
+</head>
+<body>
+    <div id="page-wrap">
+        <header>
+            <a href="index.html" title="На головну" id="logo">   Audi-Site </a>  <span class="contact">  <a href="about.html" title="Інформація про нас"> Про нас</a> </span>
+            <input type="text" class="field" placeholder="Давай поможу найти" />
+            <span class="right">
+                <span class="contact"><a href="reg.html" title="Заєреструватись"> Реєстрація</a></span>
+                <span class="contact"><a href="auth.html" title="Увійти"> Вхід</a></span>
+            </span>
+
+        </header>
+
+        <div class="clear"><br /></div>
+        <center>
+            <div id="menu">Розділи<hr /></div>
+            <div id="menuHref">
+                <a href="about.html">Про нас </a>
+                <a href="modeli.html"> Моделі Audi </a>
+                <a href="Contacts.html">Контакти </a>
+                <a href="auth.html">Вхід </a>
+                <a href="reg.html">Реєстрація </a>
+                <a href="valuta.html">Валюта </a>
+            </div>
+        </center>
+        <center>
+            <script src=C:\Users\Mykola\Desktop\������\script.js></script>
+            <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+            <script type="text/javascript"
+                    src="https://api.visicom.ua/apps/visicom-autocomplete.min.js"></script>
+
+            <script> 
+               
+                document.addEventListener('DOMContentLoaded', function () {
+                    let map = new L.Map('map', {
+                        center: new L.LatLng(50.455002, 30.511284),
+                        zoom: 9,
+                        layers: [
+                            new L.TileLayer(
+                                // paste below your private API key in key parameter
+                                'https://tms{s}.visicom.ua/2.0.0/planet3/base_ru/{z}/{x}/{y}.png?key=API_KEY',
+                                {
+                                    maxZoom: 19,
+                                    tms: true,
+                                    attribution: '������ ���� � 2023 ��� ��������',
+                                    subdomains: '123'
+                                }
+                            )
+                        ]
+                    });
+
+                    let ac = new visicomAutoComplete({
+                        selector: '#visicom-autocomplete',
+                        apiKey: 'd67f424606c1b196ea746816c0e1f0a8',
+                        placeholder: 'Search your places...',
+                        minChars: 3,
+                        delay: 150,
+                        width: '400px',
+                        height: '35px',
+                        map: map,
+                        suggestsLimit: 5,
+                        includeCategories: [],
+                        excludeCategories: [],
+                        maxCharsInSuggest: 55,
+                        lang: 'local',
+                        onSuggestSelected: suggest =>
+                            console.log('Suggest selected: ' + (suggest.html)),
+                        customFeatures: [{
+                            html: '���� �����',
+                            keywords: '���� ���������� ���� �����',
+                            coords: [50, 30],
+                        },
+                        {
+                            html: '�������� �������',
+                            keywords: '�������� �������� 23',
+                            coords: [50.46537, 30.48019],
+                        }],
+                    });
+                });
+            </script>
+
+            <div id="visicom-autocomplete">
+                <a href="https://api.visicom.ua/" target="_blank">� Visicom</a>
+            </div>
+            <div id="map" style="width: 800px; height: 400px;"></div>
+        </center>
+    </div>
+    <footer>
+        <span class="left">Всі права захищені &copy; 2023</span>
+    </footer>
+</body>
+		
+</html>
